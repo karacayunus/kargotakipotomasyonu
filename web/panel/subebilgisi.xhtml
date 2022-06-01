@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template='/template.xhtml'>
+    <ui:define name='content'>
+        <STYLE TYPE="TEXT/CSS">
+                body
+                {
+                    font:15px ;
+                    background:#ccc8c3;
+                }
+            </STYLE>
+
+
+        <h:form id="subebilgisi-form">
+            <div class=" mb-3">
+            
+                <label  class="form-label" >Kargo Sahibi  </label>
+                <h:selectManyMenu styleClass="form-select"   value="#{subebilgisiBean.entity.kargos}"  converter="kargoConverter">
+                    <f:selectItems   value="#{kargoBean.list}" var="c" itemValue="#{c}" itemLabel="#{c.adSoyad}"/>
+                </h:selectManyMenu>
+            </div>
+            <div class=" mb-3">
+                <label  class="form-label">Şube Adı  </label>
+                <h:inputText id="sb" validator="#{testBean.validateSubeAdı}" styleClass="form-control"  value="#{subebilgisiBean.entity.ad}"/><br/>
+                <h:message for="sb" style="color:red; font-size:10pt;"/> <br/>
+            </div>
+            <div class=" mb-3">
+                <label  class="form-label">Şube Adres </label>
+                <h:inputTextarea styleClass="form-control" rows="8" cols="75" value="#{subebilgisiBean.entity.adres}"/><br/>
+            </div>
+            <div class=" mb-3">
+                <h:commandButton styleClass="btn btn-success" rendered="#{subebilgisiBean.entity.id==0}" action="#{subebilgisiBean.create()}" value="Create">
+                    <f:ajax execute="subebilgisi-form" render="subebilgisi-form subebilgisi-table"/>
+                </h:commandButton>
+                <h:commandButton styleClass="btn btn-primary" rendered="#{subebilgisiBean.entity.id!=0}" action="#{subebilgisiBean.update()}" value="Update">
+                    <f:ajax execute="subebilgisi-form" render="subebilgisi-form subebilgisi-table"/>
+                </h:commandButton>
+                <h:commandButton styleClass="btn btn-secondary" rendered="#{subebilgisiBean.entity.id!=0}" action="#{subebilgisiBean.clear()}" value="Clear">
+                    <f:ajax execute="subebilgisi-form" render="subebilgisi-form subebilgisi-table"/>
+                </h:commandButton>
+            </div>
+        </h:form>
+        <hr />
+        <h:form id="subebilgisi-table">
+            <pre>Page #{subebilgisiBean.page} of #{subebilgisiBean.pageCount}</pre>
+            <div class="btn-group">
+                <h:commandButton action="#{subebilgisiBean.previous()}" value="Previous"/>
+                <h:commandButton action="#{subebilgisiBean.next()}" value="Next"/><br/><br/>
+
+            </div>
+            <h:dataTable styleClass="table table-success table-striped table-hover" value="#{subebilgisiBean.list}" var="entity">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                        #{entity.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">KARGO SAHİPLERİ</f:facet>
+                    <ul class="list-group">
+                        <ui:repeat value="#{entity.kargos}" var="k">
+                            <li>#{k.adSoyad}</li>
+
+                        </ui:repeat>
+                    </ul>
+
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ŞUBE ADI</f:facet>
+                        #{entity.ad}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ŞUBE ADRES</f:facet>
+                        #{entity.adres}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">DÜZENLEME</f:facet>
+                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{subebilgisiBean.delete(entity)}" value="Delete">
+                        <f:ajax execute="subebilgisi-form" render="subebilgisi-form subebilgisi-table"/>
+                    </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm" action="#{subebilgisiBean.setEntity(entity)}" value="Update">
+                        <f:ajax execute="subebilgisi-form" render="subebilgisi-form subebilgisi-table"/>
+                    </h:commandButton>
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
