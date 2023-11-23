@@ -1,4 +1,4 @@
-# Kargo Takip Otomasyonu
+##Kargo Takip Otomasyonu(Web dersşnde geliştirdiğim basic düzey wb sitesi)
 Kargo veren kargo sahibi kişilerin isimlerinin sisteme kaydedilmesini, kaydedilen isimlerin il bilgilerini , adres bilgilerini aynı
 zaman kişilerin kargolarının gönderileceği şubenin isim ve adres bilgisinin tutulduğu basit bir şekilde hazırlanmış sistem.
 # PROJE AŞAMALARI
