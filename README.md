@@ -1,5 +1,4 @@
-#KARGO TAKİP OTOMASYONU
-Web dersi için geliştirmiş olduğum basic düzey wev sitesi.
+# Kargo Takip Otomasyonu
 Kargo veren kargo sahibi kişilerin isimlerinin sisteme kaydedilmesini, kaydedilen isimlerin il bilgilerini , adres bilgilerini aynı
 zaman kişilerin kargolarının gönderileceği şubenin isim ve adres bilgisinin tutulduğu basit bir şekilde hazırlanmış sistem.
 # PROJE AŞAMALARI
@@ -15,5 +14,4 @@ zaman kişilerin kargolarının gönderileceği şubenin isim ve adres bilgisini
   - Java Bean Validator’lerini yazılması
   - Minimum 1 adet Dosya işleminin yapılması
   - Pagination işlemlerinin eklenmesi
-
 
